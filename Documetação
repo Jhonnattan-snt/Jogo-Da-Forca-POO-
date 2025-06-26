@@ -1,1 +1,87 @@
-https://docs.google.com/document/d/14tpMEnsqI8_KvqODfdinZd8IhAfhfvna52YByEcvNyg/edit?usp=sharing
+INSTITUTO FEDERAL DO RIO GRANDE DO NORTE CAMPUS CAICÓ
+DISCIPLINA: PROGRAMAÇÃO ORIENTADA A OBJETOS
+PROFESSOR: MAX MILLER
+COMPONENTES: RAISSA RAQUEL E JHONNNATTAN  SANTOS
+
+DOCUMENTAÇÃO DATA: 08 DE MAIO
+1. Introdução
+Tecnologias Utilizadas
+Linguagem de Programação: Python (versão 3.10 ou superior)
+Bibliotecas: random (para seleção aleatória de palavras) os ou sys (para controle de tela e sistema)
+pygame (opcional, para futura interface gráfica)
+
+Resumo do Projeto
+Este projeto consiste na implementação modular do jogo da forca, um clássico de adivinhação de palavras. O objetivo é desenvolver uma versão jogável 
+diretamente no terminal, com foco em lógica limpa, validações robustas e uma experiência fluida para o usuário. O sistema será estruturado em arquivos 
+separados para facilitar organização, manutenção e expansão futura, como adição de uma interface gráfica e armazenamento externo de palavras ou pontuação.
+
+⚠️ Aviso Importante: Esta é a primeira versão do projeto.
+Ainda não conta com movimentação ou animações (como movimentação de elementos gráficos ou personagens), sendo totalmente baseada em texto no terminal.
+Funcionalidades visuais poderão ser adicionadas em versões futuras, especialmente com a inclusão da biblioteca Pygame.
+
+Objetivo Geral
+Desenvolver uma versão funcional, modular e amigável do jogo da forca com os seguintes objetivos específicos:
+Validação eficiente de entradas do usuário, Representação dinâmica da palavra sendo adivinhada;Sistema visual de erros e fim de jogo, Organização em módulos:
+menu, lógica do jogo e banco de palavras, Facilitar extensões futuras, como persistência de dados e interface gráfica.
+
+2. Detalhamento do Projeto
+2.1 O que é o Jogo da Forca?
+A forca é um jogo no qual o jogador precisa descobrir uma palavra oculta, adivinhando uma letra por vez. A cada erro, uma parte de um "boneco enforcado" é 
+desenhada. O jogo termina com vitória (palavra adivinhada corretamente) ou derrota (número máximo de erros atingido).
+Curiosidade: É um excelente exercício para desenvolver raciocínio lógico, vocabulário, memória visual e atenção aos detalhes.
+
+2.2 Mecânicas do Jogo (Funcionalidades Principais)
+Lógica do Jogo
+Escolha aleatória da palavra secreta: As palavras podem ser carregadas de uma lista interna ou arquivo externo (.txt, .json).
+Validação da entrada do jogador: Aceita apenas letras alfabéticas (nada de números ou símbolos). Ignora letras já utilizadas.
+Verificação e atualização da palavra oculta: Exibe apenas as letras acertadas e oculta as restantes com _.
+Exemplo: Palavra: CARRO, digitado: A, R → _ A R R _.
+Controle de tentativas: A cada erro, incrementa o contador. Desenha progressivamente a forca no terminal (com arte ASCII).
+Verificação de vitória ou derrota: Vitória: o jogador adivinha todas as letras da palavra. Derrota: atinge o número máximo de erros (ex: 6 ou 7).
+Exibição no Terminal Mostrar progresso da palavra em tempo real.
+Exibir letras já tentadas, tanto corretas quanto incorretas.
+Desenhar a forca com base no número de erros:
+ text
+CopiarEditar
+ _______
+|       |
+|       O
+|      /|\
+|      / \
+|
+
+Mensagens claras: Ao vencer ou perder, mostrar a palavra correta e perguntar se o jogador quer jogar novamente.
+Extras Possíveis: Leitura de palavras de arquivos externos, Usar arquivos .txt ou .json com categorias ou níveis de dificuldade.
+Sistema de pontuação:Contabilizar partidas vencidas/total.
+
+Futuramente: salvar essas informações em um arquivo.
+Interface Gráfica (extensão futura):
+Utilizar Pygame para tornar a experiência visualmente mais rica.
+
+2.3 Estrutura de Arquivos (Organização Modular)
+bash
+CopiarEditar
+projeto_forca/
+├── menu.py           # Interface inicial; permite iniciar ou sair do jogo
+├── jogo.py           # Toda a lógica principal do jogo (tentativas, validações, resultado)
+├── palavras.py       # Geração aleatória de palavras; leitura de arquivos (txt/json)
+├── desenhos.py       # (Opcional) ASCII art das etapas da forca
+└── utils.py          # (Opcional) Funções auxiliares: limpar tela, validar entrada, etc.
+
+
+3. Fluxo Geral do Jogo
+Menu Principal (menu.py)
+ → Exibe opções: Jogar | Sair
+ → Direciona para o jogo ou finaliza o programa.
+Início de Partida (jogo.py)
+ → Escolhe palavra
+ → Inicializa variáveis (tentativas, letras usadas, palavra oculta)
+Loop de Jogo
+ → Solicita letra
+ → Verifica letra
+ → Atualiza estado do jogo
+ → Verifica condição de vitória ou derrota
+Fim da Partida
+ → Mostra resultado
+ → Oferece opção de jogar novamente
+
